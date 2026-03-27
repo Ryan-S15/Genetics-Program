@@ -1,2 +1,153 @@
-# Genetics-Program
-A program that generates a punnet square and shows percentages of colorblindness 
+#include <iostream>
+
+using namespace std;
+
+//declaring all of the functions being used throughout the program
+void punnettDisplay (string& dadOne, string& dadTwo, string& momOne, string& momTwo, int& momCheck, int& dadCheck); //determined genotypes and phenotypes based off user inputs
+void motherData (string& momOne, string& momTwo, int& momCheck); //first bit of user input gathered for the program for the mothers' data
+void fatherData (string& dadOne, string& dadTwo, int& dadCheck); //second bit of user input gathered for the program for the father's data
+void programCheck (int& programCompletion); //a check to see if the user wants to stop using the program, last bit of user input, unless the user decides to continue
+
+int main()
+{
+    int dadCheck, momCheck, programCompletion;
+    string momOne, momTwo, dadOne, dadTwo;
+    //an intro explaining to users the use of the program and a simple explanation of the process
+    cout << "===============================" << endl;
+    cout << "{ This program will determine }" << endl;
+    cout << "{ the possibility of a child  }" << endl;
+    cout << "{   being colorblind using    }" << endl;
+    cout << "{   parent's X genotype's as  }" << endl;
+    cout << "{ colorblindness is linked to }" << endl;
+    cout << "{ the parent's X chromosomes. }" << endl;
+    cout << "===============================\n" << endl;
+
+    while (programCompletion != 2) { //loops as long as the program completion value isn't equal to 2
+       motherData (momOne, momTwo, momCheck); //uses user input to determine the genotypes given by the mother
+       fatherData (dadOne, dadTwo, dadCheck); //uses user input to determine the genotypes given by the father
+       punnettDisplay (dadOne, dadTwo, momOne, momTwo, momCheck, dadCheck); //displays all data determined and gathered by the user for all possibilities for both genotypes and phenotypes
+       programCheck (programCompletion); //check if user wants to proceed with using the program again
+    }
+}
+
+void motherData (string& momOne, string& momTwo, int& momCheck) { //all determined data for the mother by user input
+    cout << "Is the mother Colorblind, not Colorblind, or a Carrier?\n\n1 - Colorblind\n2 - Not Colorblind\n3 - Carrier\n";
+    cin >> momCheck;
+    while (!momCheck or momCheck > 3 or momCheck < 1) { //invalid input/fail check the mother's data
+        cout << "Invalid input, please give the data for the mother.\n\n1 - Colorblind\n2 - Not Colorblind\n3 - Carrier\n";
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cin >> momCheck;
+    }
+    if (momCheck == 1) {
+        momOne = "Xa";
+        momTwo = "Xa";
+    } else {
+        if (momCheck == 2) {
+          momOne ="XA";
+          momTwo ="XA";
+        } else {
+           momOne ="XA";
+           momTwo ="Xa";
+        }
+    }
+
+}
+
+void fatherData (string& dadOne, string& dadTwo, int& dadCheck) { //all determined data for the father by user input
+    cout << "Is the father Colorblind or not?\n1 - Colorblind\n2 - Not Colorblind\n";
+    cin >> dadCheck;
+    while (!dadCheck or dadCheck > 2 or dadCheck < 1) { //invalid input/fail check for the father's data
+        cout << "Invalid input, please give the data for the father.\n\n1 - Colorblind\n2 - Not Colorblind\n";
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cin >> dadCheck;
+    }
+    if (dadCheck == 1) {
+        dadOne = "Xa";
+        dadTwo = "Y";
+    } else {
+        dadOne = "XA";
+        dadTwo = "Y" ;
+    }
+}
+
+void punnettDisplay (string& dadOne, string& dadTwo, string& momOne, string& momTwo, int& momCheck, int& dadCheck) { //only uses one punnett square to display data based off user input
+    cout << "\n       "<< dadOne<< "             " << dadTwo << "       " << endl;
+    cout << "===============================" << endl;
+    cout << "[              |              ]" << endl;
+    cout << "[              |              ]" << endl;
+    cout << "[     " << dadOne << "-" << momOne << "    |     " << momOne << "-" <<dadTwo << "     | " << momOne << endl;
+    cout << "[              |              ]" << endl;
+    cout << "[              |              ]" << endl;
+    cout << "===============================" << endl;
+    cout << "[              |              ]" << endl;
+    cout << "[              |              ]" << endl;
+    cout << "[     " << dadOne << "-" << momTwo << "    |     " << momTwo << "-" << dadTwo << "     | " << momTwo << endl;
+    cout << "[              |              ]" << endl;
+    cout << "[              |              ]" << endl;
+    cout << "===============================" << endl;
+
+    //displays different phenotype percentages Based on input 
+    if (momCheck == 1 && dadCheck == 1) {
+        cout << "\nNon-Colorblind Male 50%";
+        cout << "\nRegular Non-Colorblind Female 0%";
+        cout << "\nCarrier Female 0%";
+        cout << "\nColorblind Male 50%";
+        cout << "\nColorblind Female 50%";
+    } else {
+        if (momCheck == 1 && dadCheck == 2) {
+            cout << "\nNon-Colorblind Male 0%";
+            cout << "\nRegular Non-Colorblind Female 0%";
+            cout << "Carrier Female 50%";
+            cout << "\nColorblind Male 50%\n";
+            cout << "\nColorblind Female 0%";
+        } else {
+            if (momCheck == 2 && dadCheck == 1) {
+                cout << "\nNon-Colorblind Male 50%";
+                cout << "\nRegular Non-Colorblind Female 0%";
+                cout << "\nCarrier Female 50%";
+                cout << "\nColorblind Male 0%";
+                cout << "\nColorblind Female 0%";
+            } else {
+                if (momCheck == 2 && dadCheck == 2) {
+                    cout << "\nNon-Colorblind Male 50%";
+                    cout << "\nRegular Non-Colorblind Female 50% ";
+                    cout << "\nCarrier Female 0%";
+                    cout << "\nColorblind Male 0%";
+                    cout << "\nColorblind Female 0%";
+                } else {
+                    if (momCheck == 3 && dadCheck == 1) {
+                        cout << "\nNon-Colorblind Male 25%";
+                        cout << "\nRegular Non-Colorblind Female 0";
+                        cout << "\nCarrier Female 25% ";
+                        cout << "\nColorblind Male 25%";
+                        cout << "\nColorblind Female 25%";
+                    } else {
+                        if (momCheck == 3 && dadCheck == 2) {
+                            cout << "\nNon-Colorblind Male 25%";
+                            cout << "\nRegular Non-Colorblind Female 25%";
+                            cout << "\nColorblind Male 25%";
+                            cout << "\nColorblind Female 0%";
+                            cout << "\nCarrier Female 25%";
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+void programCheck (int& programCompletion) { //checks if the user would like to run the program again, ends the program if they don't
+    cout << "\n\nDo you want to use the program again?\n\n1 - Yes\n2 - No\n";
+    cin >> programCompletion;
+    while (!programCompletion or programCompletion > 2 or programCompletion < 1) {
+        cout << "Invalid. Would you like to use the program again?\n\n1 - Yes\n2 - No\n";
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cin >> programCompletion;
+    }
+    if (programCompletion == 1) {
+        cout << "\n----------------------------------------------------------------------------------------------------------\n" << endl;
+    }
+}
