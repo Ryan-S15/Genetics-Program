@@ -23,10 +23,10 @@ int main()
     cout << "===============================\n" << endl;
 
     while (programCompletion != 2) { //loops as long as the program completion value isn't equal to 2
-       motherData (momOne, momTwo, momCheck); //uses user input to determine the genotypes given by the mother
-       fatherData (dadOne, dadTwo, dadCheck); //uses user input to determine the genotypes given by the father
-       punnettDisplay (dadOne, dadTwo, momOne, momTwo, momCheck, dadCheck); //displays all data determined and gathered by the user for all possibilities for both genotypes and phenotypes
-       programCheck (programCompletion); //check if user wants to proceed with using the program again
+       motherData (momOne, momTwo, momCheck); //uses input to determine the genotypes given by the mother
+       fatherData (dadOne, dadTwo, dadCheck); //uses input to determine the genotypes given by the father
+       punnettDisplay (dadOne, dadTwo, momOne, momTwo, momCheck, dadCheck); //displays all data determined gathred by the user in to a punnnet sqaure for easy viewing
+       programCheck (programCompletion); //check if user wants to use the progaam again
     }
 }
 
