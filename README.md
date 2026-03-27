@@ -23,10 +23,10 @@ int main()
     cout << "===============================\n" << endl;
 
     while (programCompletion != 2) { //loops as long as the program completion value isn't equal to 2
-       motherData (momOne, momTwo, momCheck); //uses input to determine the genotypes given by the mother
-       fatherData (dadOne, dadTwo, dadCheck); //uses input to determine the genotypes given by the father
-       punnettDisplay (dadOne, dadTwo, momOne, momTwo, momCheck, dadCheck); //displays all data determined gathred by the user in to a punnnet sqaure for easy viewing
-       programCheck (programCompletion); //check if user wants to use the progaam again
+       motherData (momOne, momTwo, momCheck); //uses user input to determine the genotypes given by the mother
+       fatherData (dadOne, dadTwo, dadCheck); //uses user input to determine the genotypes given by the father
+       punnettDisplay (dadOne, dadTwo, momOne, momTwo, momCheck, dadCheck); //displays all data determined and gathered by the user for all possibilities for both genotypes and phenotypes
+       programCheck (programCompletion); //check if user wants to proceed with using the program again
     }
 }
 
@@ -90,7 +90,7 @@ void punnettDisplay (string& dadOne, string& dadTwo, string& momOne, string& mom
 
     //displays different phenotype percentages Based on input 
     if (momCheck == 1 && dadCheck == 1) {
-        cout << "\nNon-Colorblind Male 50%";
+        cout << "\nNon-Colorblind Male 0%";
         cout << "\nRegular Non-Colorblind Female 0%";
         cout << "\nCarrier Female 0%";
         cout << "\nColorblind Male 50%";
@@ -99,8 +99,8 @@ void punnettDisplay (string& dadOne, string& dadTwo, string& momOne, string& mom
         if (momCheck == 1 && dadCheck == 2) {
             cout << "\nNon-Colorblind Male 0%";
             cout << "\nRegular Non-Colorblind Female 0%";
-            cout << "Carrier Female 50%";
-            cout << "\nColorblind Male 50%\n";
+            cout << "\nCarrier Female 50%";
+            cout << "\nColorblind Male 50%";
             cout << "\nColorblind Female 0%";
         } else {
             if (momCheck == 2 && dadCheck == 1) {
@@ -119,7 +119,7 @@ void punnettDisplay (string& dadOne, string& dadTwo, string& momOne, string& mom
                 } else {
                     if (momCheck == 3 && dadCheck == 1) {
                         cout << "\nNon-Colorblind Male 25%";
-                        cout << "\nRegular Non-Colorblind Female 0";
+                        cout << "\nRegular Non-Colorblind Female 0%";
                         cout << "\nCarrier Female 25% ";
                         cout << "\nColorblind Male 25%";
                         cout << "\nColorblind Female 25%";
